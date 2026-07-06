@@ -17,7 +17,7 @@ it works via a validation script.
 
 ## Repository layout
 
-```
+```text
 images/
   ubuntu/            Ubuntu 22.04/24.04/26.04 (x64 + arm64)
   ubuntu-slim/        Minimal Ubuntu image
