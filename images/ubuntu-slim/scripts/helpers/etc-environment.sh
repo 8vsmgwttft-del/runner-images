@@ -45,18 +45,24 @@ prepend_etc_environment_variable() {
     local variable_name=$1
     local element=$2
 
-    # TODO: handle the case if the variable does not exist
     existing_value=$(get_etc_environment_variable "${variable_name}")
-    set_etc_environment_variable "${variable_name}" "${element}:${existing_value}"
+    if [ -z "${existing_value}" ]; then
+        set_etc_environment_variable "${variable_name}" "${element}"
+    else
+        set_etc_environment_variable "${variable_name}" "${element}:${existing_value}"
+    fi
 }
 
 append_etc_environment_variable() {
     local variable_name=$1
     local element=$2
 
-    # TODO: handle the case if the variable does not exist
     existing_value=$(get_etc_environment_variable "${variable_name}")
-    set_etc_environment_variable "${variable_name}" "${existing_value}:${element}"
+    if [ -z "${existing_value}" ]; then
+        set_etc_environment_variable "${variable_name}" "${element}"
+    else
+        set_etc_environment_variable "${variable_name}" "${existing_value}:${element}"
+    fi
 }
 
 prepend_etc_environment_path() {
